@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS "state";
+CREATE TABLE "state" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , "region_id" INTEGER, "name" TEXT UNIQUE , "short_name" TEXT);
+INSERT INTO "state" VALUES(1,1,'Северный администативный округ','САО');
+INSERT INTO "state" VALUES(2,1,'Северо-Восточный администативный округ','СВАО');
+INSERT INTO "state" VALUES(3,1,'Восточный административный округ','ВАО');
+INSERT INTO "state" VALUES(4,1,'Юго-Восточный административный округ','ЮВАО');
+INSERT INTO "state" VALUES(5,1,'Южный административный округ','ЮАО');
+INSERT INTO "state" VALUES(6,1,'Юго-Западный административный округ','ЮЗАО');
+INSERT INTO "state" VALUES(7,1,'Западный административный округ','ЗАО');
+INSERT INTO "state" VALUES(8,1,'Северо-Западный административный округ','СЗАО');
+INSERT INTO "state" VALUES(9,1,'Зеленоградский административный округ','ЗелАО');
+INSERT INTO "state" VALUES(10,1,'Новомосковский и Троицкий административный округ','НиТАО');
+INSERT INTO "state" VALUES(11,1,'Центральный административный округ','ЦАО');
