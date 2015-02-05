@@ -6,6 +6,6 @@
 /src/Справка СОД по загрязнению воздуха 06-00  22.01.2015.doc
 /src/доступ.txt
 /src/result.txt
-nbproject
-.git
-.gitignore
+/nbproject/
+/.git/
+/.gitignore
