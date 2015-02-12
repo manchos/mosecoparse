@@ -88,20 +88,13 @@ class Ecomon:
         rowdicts = [dict(zip(colnames, row)) for row in self.curs.fetchall()]    
         return rowdicts
     
-  
     def set_tdposition(self, param, url48):
-        cols = []
-        vals = []
-        self.curs.execute('select ecop.*, state.short_name as ao from ecop, state where ecop.state_id = state.id')
-        cursor.execute('''UPDATE ecop SET price = ? WHERE id = ?''', (newPrice, book_id))
-        gen_update('ecop', 
-        
-        
-        
-        
-        for col, val in param.items():
-            cols.append(enquote2(col))
-            vals.append(enquote1(str(val)))
+        q = gen_update('ecop', param, 'url48='+url48 )
+        self.curs.execute(q)
+        self.curs.commit()
+
+       
+
         
 
 DBecomon = Ecomon(curs)
@@ -127,7 +120,7 @@ class ExampleSpider(Spider):
         arr = {}
         for elem in grab.doc.select('//th'):
             try:
-                #print elem.attr('colspan'), elem.text()
+                print elem.attr('colspan'), elem.text(), tdpdk
                 #when in th colspan = 2 - column value of the second
                 tdpdk+=2 
             except:
@@ -140,10 +133,15 @@ class ExampleSpider(Spider):
                 pok = re.search("(NO |CO |H2S|PM10)", elem.text())
                 if pok:
                     pok_s = pok.group().strip().lower()
-                    print pok_s
-                    arr[pok_s] = tdpdk
-                    self.list1[task.station] = arr
+                   #print pok_s
+#                    DBecomon.set_tdposition()
+                    
+                arr[pok_s] = tdpdk
                 
+#                print task.station
+#                self.list1[task.station] = arr
+        print arr
+        print task.station['url48']
         #print 'количество %s' % thcount
         #return list1  'jobs': ['programmer', 'writer'],
         
@@ -174,12 +172,12 @@ class ExampleSpider(Spider):
 #        select last_insert_rowid()
     
     
-    def task_search(self, grab, task, DBecomon):
+    def task_search(self, grab, task):
         self.get_tdparametr_position(grab, task)
-        print self.list1.items()
+#        print self.list1.items()
 #        for station, param, position in self.list1.items():
 #            print station, param, position
-        print task.station['ename'];
+#        print task.station['url48'];
         
         self.get_trtime_position(grab)
         #print grab.doc.select('//div[@class="s"]//cite').text()
